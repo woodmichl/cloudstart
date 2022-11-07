@@ -1,0 +1,13 @@
+<h2>My Tasks</h2>
+<ul class="list">
+  <li *ngFor="let testitem of listitems">
+    <checkbox type="checkbox"></checkbox>
+    <a routerLink="/todo/{{testitem.id}}">
+      <span class="id">{{testitem.id}}</span> {{testitem.name}}
+    </a>
+    <button type="button" (click)="delete(testitem)">Delete</button>
+  </li>
+</ul>
+
+
+
