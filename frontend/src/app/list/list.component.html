@@ -1,13 +1,32 @@
-<h2>My Tasks</h2>
+<h2>my tasks</h2>
 <ul class="list">
   <li *ngFor="let testitem of listitems">
-    <checkbox type="checkbox"></checkbox>
-    <a routerLink="/todo/{{testitem.id}}">
-      <span class="id">{{testitem.id}}</span> {{testitem.name}}
-    </a>
-    <button type="button" (click)="delete(testitem)">Delete</button>
+    <div>
+      <mat-checkbox color="primary" [(ngModel)]="testitem.done" (change)="updateItem(testitem)"></mat-checkbox>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput type="text" [(ngModel)]="testitem.name" (change)="updateItem(testitem)"
+               [disabled]="testitem.done">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput type="text" [(ngModel)]="testitem.content" (change)="updateItem(testitem)"
+               [disabled]="testitem.done">
+      </mat-form-field>
+      <button mat-raised-button type="button" (click)="delete(testitem)" color="warn">Delete</button>
+    </div>
+    <hr>
   </li>
+  <li><h2>add new task</h2></li>
+  <li>
+    <mat-checkbox color="primary" [(ngModel)]="addedItem.done"></mat-checkbox>
+    <mat-form-field>
+      <mat-label>Name</mat-label><input matInput type="text" [(ngModel)]="addedItem.name">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label><input matInput type="text" [(ngModel)]="addedItem.content">
+    </mat-form-field>
+    <button mat-raised-button type="button" (click)="createTodo()" color="primary">Save Task</button>
+  </li>
+  <button mat-raised-button (click)="logItems()" *ngIf="devMode">Log All</button>
 </ul>
-
-
-

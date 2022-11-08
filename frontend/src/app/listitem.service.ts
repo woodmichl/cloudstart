@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Listitem} from "./listitem";
+import {Injectable} from '@angular/core';
+import {Listitem} from "./listitem";
 import {TASKS} from "./mock-tasks";
-import { Observable, of } from 'rxjs';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable, of} from 'rxjs';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ export class ListitemService {
     private http: HttpClient) { }
 
   getListitems(): Observable<Listitem[]> {
-    const listitem = of(TASKS);
-    return listitem;
+    return this.http.get<Listitem[]>("/api/todo")
+    // return of(TASKS);
     // hier muss der Aufruf des Backend rein -> ganze Liste von Aufgaben
     // return this.http.get<Listitem[]>(this.itemsUrl);
   }
